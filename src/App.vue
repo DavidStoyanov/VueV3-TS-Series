@@ -1,6 +1,7 @@
 <template>
   <div class="app">
-    hello 
+    <p>{{ name }}</p>
+    <button @click="changeName('Gel')">change name</button>
   </div>
 </template>
 
@@ -9,7 +10,18 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'App',
-  components: {}
+  components: {},
+  data() {
+    return {
+      name: 'Link' as string | number
+    }
+  },
+  methods: {
+    changeName(name: string | number) : true {
+      this.name = name
+      return true;
+    }
+  }
 });
 </script>
 
