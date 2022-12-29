@@ -1,7 +1,7 @@
 <template>
     <div class="job-list">
         <ul>
-            <li v-for="job in jobs" :key="job.id">
+            <li v-for="job in orderedJobs" :key="job.id">
                 <h2><span v-case:pascal>{{ job.title }}</span> in <span v-case:pascal>{{ job.location }}</span></h2>
                 <div class="salary">
                     <span>position: {{ job.title }}</span>
@@ -20,9 +20,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import Job from '@/types/Job'
 import OrderTerm from '@/types/OrderTerm'
+import { sortStringMixin, sortNumberMixin } from '@/utils/sort'
 
 export default defineComponent({
     props: {
@@ -34,15 +35,31 @@ export default defineComponent({
             required: false,
             type: String as PropType<OrderTerm>
         }
+    },
+    setup(props) {
+        const getJobsSorted = (a: Job, b: Job): number => {
+            switch (props.order) {
+                case 'default': return sortStringMixin(a.id, b.id)
+                case 'title-low': return sortStringMixin(a.title, b.title)
+                case 'title-high': return sortStringMixin(b.title, a.title)
+                case 'location-low': return sortStringMixin(a.location, b.location)
+                case 'location-high': return sortStringMixin(b.location, a.location)
+                case 'salary-low': return sortNumberMixin(a.salary, b.salary)
+                case 'salary-high': return sortNumberMixin(b.salary, a.salary)
+                default: return sortStringMixin(a.id, b.id)
+            }
+        }
+
+        const orderedJobs = computed(() => {
+            return [...props.jobs].sort((a: Job, b: Job) => getJobsSorted(a, b))
+        })
+
+        return { orderedJobs }
     }
 })
 </script>
 
 <style>
-    * {
-        font-size: 1.10rem;
-    }
-
     li {
         margin-bottom: 2.5rem;
     }

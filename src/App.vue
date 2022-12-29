@@ -3,9 +3,9 @@
     <select v-model="order">
       <option value="default">Select sort</option>
       <option value="title-low">Title: Lower first</option>
-      <option value="title-low">Title: Higher first</option>
+      <option value="title-high">Title: Higher first</option>
       <option value="location-low">Location: Lower first</option>
-      <option value="location-low">Location: Higher first</option>
+      <option value="location-high">Location: Higher first</option>
       <option value="salary-low">Salary: Lower first</option>
       <option value="salary-high">Salary: Higher first</option>
     </select>
@@ -33,10 +33,6 @@ export default defineComponent({
     ])
     const order = ref<OrderTerm>('default')
 
-    /* const handleClick = (term: OrderTerm) => {
-      throw new Error();
-    } */
-
     return { jobs, order }
   },
   methods: {
@@ -46,7 +42,16 @@ export default defineComponent({
 </script>
 
 <style>
-#app {
-  
+* {
+  font-size: 1.10rem;
 }
+
+select {
+  background: rgba(222, 240, 219, 0.5);
+  padding: 0.3rem 1rem;
+  margin: 1rem 0 0 1rem;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 0.3rem;
+}
+
 </style>
