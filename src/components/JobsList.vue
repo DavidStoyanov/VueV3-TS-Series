@@ -1,6 +1,6 @@
 <template>
     <div class="job-list">
-        <ul>
+        <transition-group name="list" tag="ul">
             <li v-for="job in orderedJobs" :key="job.id">
                 <h2><span v-case:pascal>{{ job.title }}</span> in <span v-case:pascal>{{ job.location }}</span></h2>
                 <div class="salary">
@@ -15,7 +15,7 @@
                     </p>
                 </div>
             </li>
-        </ul>
+        </transition-group>
     </div>
 </template>
 
@@ -78,5 +78,9 @@ export default defineComponent({
     .description p {
         max-width: 1200px;
         margin-left: 0.5rem;
+    }
+
+    .list-move {
+        transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) 400ms;
     }
 </style>
