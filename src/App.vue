@@ -1,18 +1,28 @@
 <template>
   <div class="app">
-    <job-list :jobs="jobs" />
+    <select v-model="order">
+      <option value="default">Select sort</option>
+      <option value="title-low">Title: Lower first</option>
+      <option value="title-low">Title: Higher first</option>
+      <option value="location-low">Location: Lower first</option>
+      <option value="location-low">Location: Higher first</option>
+      <option value="salary-low">Salary: Lower first</option>
+      <option value="salary-high">Salary: Higher first</option>
+    </select>
+    <JobList :jobs="jobs" :order="order" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from 'vue';
+import { computed, defineComponent, PropType, reactive, ref, toRefs } from 'vue';
 import JobList from './components/JobsList.vue'
 import Job from './types/Job';
+import OrderTerm from './types/OrderTerm';
 
 export default defineComponent({
   name: 'App',
   components: {
-    'job-list': JobList
+    JobList
   },
   setup() {
     const jobs = ref<Job[]>([
@@ -21,8 +31,13 @@ export default defineComponent({
       { title: 'farm worker', location: 'lon lon range', salary: 6500, id: '3' },
       { title: 'farm manager', location: 'lon lon range', salary: 11100, id: '4' },
     ])
+    const order = ref<OrderTerm>('default')
 
-    return { jobs }
+    /* const handleClick = (term: OrderTerm) => {
+      throw new Error();
+    } */
+
+    return { jobs, order }
   },
   methods: {
     

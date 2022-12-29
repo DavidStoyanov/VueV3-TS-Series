@@ -22,12 +22,17 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import Job from '@/types/Job'
+import OrderTerm from '@/types/OrderTerm'
 
 export default defineComponent({
     props: {
         jobs: {
             required: true,
             type: Array as PropType<Job[]>
+        },
+        order: {
+            required: false,
+            type: String as PropType<OrderTerm>
         }
     }
 })
@@ -36,6 +41,10 @@ export default defineComponent({
 <style>
     * {
         font-size: 1.10rem;
+    }
+
+    li {
+        margin-bottom: 2.5rem;
     }
 
     .salary span {
