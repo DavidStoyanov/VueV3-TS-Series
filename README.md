@@ -1,24 +1,6 @@
-# jobs
+# Vue3 TypeScript Tutorial project - Jobs
 
-## Project setup
-```
-npm install
-```
+## Link to **The Net Ninja** course
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [GitHub _vue-with-typescript_ @iamshaunjp](https://github.com/iamshaunjp/vue-with-typescript)
+- [YouTube _Vue 3 with TypeScript_ @NetNinja](https://youtu.be/JfI5PISLr9w?list=PL4cUxeGkcC9gCtAuEdXTjNVE5bbMFo5OD)
